@@ -1,0 +1,23 @@
+# Hanya untuk uji coba lokal:  docker compose up --build
+# (di EasyPanel TIDAK dipakai — Postgres dan App dibuat sebagai service terpisah)
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: tarpass
+      POSTGRES_DB: tar
+    volumes: [pgdata:/var/lib/postgresql/data]
+  app:
+    build: .
+    depends_on: [db]
+    ports: ["3000:3000"]
+    environment:
+      DATABASE_URL: postgres://postgres:tarpass@db:5432/tar
+      JWT_SECRET: uji-coba-lokal-ganti-di-produksi-0123456789abcdef
+      NODE_ENV: production
+      COOKIE_SECURE: "false"
+      SEED_DEMO: "true"
+    volumes: [uploads:/data/uploads]
+volumes:
+  pgdata:
+  uploads:
