@@ -1,4 +1,4 @@
-# TAR System — PT Riung Mitra Lestari
+# TAR System — Mubarak Project
 
 Technical Analysis Report (TAR) perawatan alat berat. Node.js (Express) + PostgreSQL, siap deploy di **EasyPanel**.
 
